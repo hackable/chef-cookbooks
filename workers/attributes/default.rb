@@ -1,1 +1,1 @@
-default[:supervison_path] = "/usr/local/bin/supervisord"
+default[:supervisor_path] = "/usr/local/bin/supervisord"
