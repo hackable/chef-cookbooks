@@ -7,7 +7,13 @@ node[:deploy].each do |application, deploy|
     curl -s https://getcomposer.org/installer | php
     php composer.phar install
     EOH
-  end  
+  end
+  directory "#{deploy[:deploy_to]}/current/assets/cache" do
+    owner deploy[:user] 
+    group deploy[:group]
+    recursive true
+    mode "0777"
+  end
   template "#{deploy[:deploy_to]}/current/.htaccess" do
     source "htaccess.erb"
     owner deploy[:user] 
