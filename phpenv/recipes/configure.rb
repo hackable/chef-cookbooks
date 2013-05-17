@@ -1,6 +1,6 @@
 node[:deploy].each do |application, deploy|
   
-  template "#{deploy[:deploy_to]}/current/public/.htaccess" do
+  template "#{deploy[:deploy_to]}/current/.htaccess" do
     source "htaccess.erb"
     owner deploy[:user] 
     group deploy[:group]
@@ -9,7 +9,7 @@ node[:deploy].each do |application, deploy|
     variables( :env => node[:custom_env], :application => "#{application}" )
 
     only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/public")
+     File.directory?("#{deploy[:deploy_to]}/current/")
     end
   end
 end
